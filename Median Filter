@@ -28,15 +28,54 @@ cv2.waitKey(0)
 # cv2.imshow('main2', img2)
 # cv2.waitKey(0)
 
-my_median = img.copy()   #initialize because of the boundaries
 
-for i in range(high-4):
+#MY MEDIAN FILTER
+
+my_median = img.copy()   #initialize because of the boundaries
+for i in range(4):
     for j in range(width-4):
         listA = [img[i, j], img[i, j+1], img[i, j+2], img[i, j+3], img[i, j+4],
                  img[i+1, j], img[i+1, j+1], img[i+1, j+2], img[i+1, j+3], img[i+1, j+4],
                  img[i+2, j], img[i+2, j+1], img[i+2, j+2], img[i+2, j+3], img[i+2, j+4],
                  img[i+3, j], img[i+3, j+1], img[i+3, j+2], img[i+3, j+3], img[i+3, j+4],
                  img[i+4, j], img[i+4, j+1], img[i+4, j+2], img[i+4, j+3], img[i+4, j+4]]
+        my_median[i][j] = statistics.median(listA)
+        listA = []
+for i in range(high-4):
+    for j in range(4):
+        listA = [img[i, j], img[i, j+1], img[i, j+2], img[i, j+3], img[i, j+4],
+                 img[i+1, j], img[i+1, j+1], img[i+1, j+2], img[i+1, j+3], img[i+1, j+4],
+                 img[i+2, j], img[i+2, j+1], img[i+2, j+2], img[i+2, j+3], img[i+2, j+4],
+                 img[i+3, j], img[i+3, j+1], img[i+3, j+2], img[i+3, j+3], img[i+3, j+4],
+                 img[i+4, j], img[i+4, j+1], img[i+4, j+2], img[i+4, j+3], img[i+4, j+4]]
+        my_median[i][j] = statistics.median(listA)
+        listA = []
+for i in range(4, high-4):
+    for j in range(4, width-4):
+        listA = [img[i-2, j-2], img[i-2, j-1], img[i-2, j], img[i-2, j+1], img[i-2, j+2],
+                 img[i-1, j-2], img[i-1, j-1], img[i-1, j], img[i-1, j+1], img[i-1, j+2],
+                 img[i, j-2], img[i, j-1], img[i, j], img[i, j+1], img[i, j+2],
+                 img[i+1, j-2], img[i+1, j-1], img[i+1, j], img[i+1, j+1], img[i+1, j+2],
+                 img[i+2, j-2], img[i+2, j-1], img[i+2, j], img[i+2, j+1], img[i+2, j+2]]
+        my_median[i][j] = statistics.median(listA)
+        listA = []
+
+for i in range(high-4, high):
+    for j in range(width):
+        listA = [img[i-4, j-4], img[i-4, j-3], img[i-4, j-2], img[i-4, j-1], img[i-4, j],
+                 img[i-3, j-4], img[i-3, j-3], img[i-3, j-2], img[i-3, j-1], img[i-3, j],
+                 img[i-2, j-4], img[i-2, j-3], img[i-2, j-2], img[i-2, j-1], img[i-2, j],
+                 img[i-1, j-4], img[i-1, j-3], img[i-1, j-2], img[i-1, j-1], img[i-1, j],
+                 img[i, j-4], img[i, j-3], img[i, j-2], img[i, j], img[i, j]]
+        my_median[i][j] = statistics.median(listA)
+        listA = []
+for i in range(high):
+    for j in range(width-4, width):
+        listA = [img[i-4, j-4], img[i-4, j-3], img[i-4, j-2], img[i-4, j-1], img[i-4, j],
+                 img[i-3, j-4], img[i-3, j-3], img[i-3, j-2], img[i-3, j-1], img[i-3, j],
+                 img[i-2, j-4], img[i-2, j-3], img[i-2, j-2], img[i-2, j-1], img[i-2, j],
+                 img[i-1, j-4], img[i-1, j-3], img[i-1, j-2], img[i-1, j-1], img[i-1, j],
+                 img[i, j-4], img[i, j-3], img[i, j-2], img[i, j], img[i, j]]
         my_median[i][j] = statistics.median(listA)
         listA = []
 
